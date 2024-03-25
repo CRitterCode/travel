@@ -5,15 +5,9 @@ class Footer extends HTMLElement {
 
     connectedCallback() {
         this.innerHTML = `
-
-    <footer>
-        <nav>
-<!--            <a href="../html/about.html">About</a>-->
-            <a href="../html/SuitecasePacking.html">Suitecase packing</a>
-<!--            <a href="../html/Aktivities.html">Aktivities</a>-->
-            <a href="../html/destination.html">Travel destination</a>
-<!--            <a href="../html/Budget.html">Budget</a>-->
-        </nav>
+    <footer class="container">
+        <p class="float-end"><a href="#">Back to top</a></p>
+        <p>&copy; 2017–2021 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
     </footer>
         `;
     }

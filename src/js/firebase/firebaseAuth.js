@@ -35,26 +35,41 @@ function initializeUI(container) {
 
         let saveBtn = document.getElementById("saveDBTable");
         let loadBtn = document.getElementById("loadDBTable");
+        let userAuthBtn = Array.from(document.getElementsByClassName('userAuthBtn'));
+        let UserAuthLogOutBtn = document.getElementById('UserAuthLogOutBtn');
+
+
         if (!user) {
             ui.start('#firebaseui-auth-container', uiConfig);
             loadBtn?.classList.toggle('disabled', true);
             saveBtn?.classList.toggle('disabled', true);
+
+            userAuthBtn.forEach(item => {
+                item.classList.toggle('d-none')
+            })
+
+            UserAuthLogOutBtn.classList.add('d-none')
+
             document.cookie = 'idToken' + "=" + '' + ";path=/";
-
-            document.getElementById('UserAuthBtn').classList.toggle('d-none')
-            document.getElementById('UserAuthLogOutBtn').classList.add('d-none')
-
         } else {
+            const authModal = document.getElementById('authModal');
+            const modal = bootstrap.Modal.getInstance(authModal);
+            modal?.hide();
+
             ui.reset();
-            //renderLogoutCard("firebaseui-auth-container");
+            //renderLogoutCard("firebaseui-auth-container");)
 
-            document.getElementById('UserAuthBtn').classList.add('d-none')
-            document.getElementById('UserAuthLogOutBtn').classList.toggle('d-none')
+            userAuthBtn.forEach(item => {
+                item.classList.add('d-none');
+            })
 
-            let UserAuthLogOutBtn = document.getElementById('UserAuthLogOutBtn');
+            UserAuthLogOutBtn.classList.toggle('d-none')
+
             UserAuthLogOutBtn.addEventListener("click", function () {
                 firebase.auth().signOut();
             })
+
+
 
             loadBtn?.classList.toggle('disabled', false);
             saveBtn?.classList.toggle('disabled', false);

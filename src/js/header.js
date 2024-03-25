@@ -8,44 +8,8 @@ class Header extends HTMLElement {
 
     connectedCallback() {
         this.innerHTML = `
-        <header>
-   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="../html/index.html">
-      <img src="../html/pics/homeWhite.png" alt="Home icon" width="30" height="30" class="d-inline-block align-top">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="./SuitecasePacking.html">Suitecase packing</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="destination.html">Travel destination</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/status">Status</a>
-        </li>
-        <li class="nav-item">
-                <button id='UserAuthLogOutBtn' type="button" class="btn btn-danger d-none">                  
-                LogOut
-                </button>
-        </li>
-        <li class="nav-item">
-            <button id='UserAuthBtn' type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#loginModal">
-            Login/ Register
-            </button>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-                
 
-            <!-- Modal -->
-            <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+            <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModal" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -60,10 +24,46 @@ class Header extends HTMLElement {
                 </div>
               </div>
             </div>
-        </header>
+
+            <header>
+              <div class="collapse bg-dark" id="navbarHeader">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm-8 col-md-7 py-4">
+                      <h4 class="text-white">About</h4>
+                      <p class="text-white">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+                    </div>
+                    <div class="col-sm-4 offset-md-1 py-4">
+                      <h4 class="text-white">Contact</h4>
+                      <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Follow on Twitter</a></li>
+                        <li><a href="#" class="text-white">Like on Facebook</a></li>
+                        <li><a href="#" class="text-white">Email me</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="navbar navbar-dark bg-dark shadow-sm">
+                <div class="container">
+                  <a href="../html/index.html" class="navbar-brand d-flex align-items-center mx-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                    <strong>Willkommen auf Plan2travel4you</strong>
+                  </a>
+                  <div class="navbar-nav ms-auto">
+                     <button id='UserAuthLogOutBtn' type="button" class="btn btn-danger mx-3 d-none">LogOut</button>
+                     <button id='UserAuthBtn' type="button" class="btn btn-primary mx-3 d-none userAuthBtn" data-bs-toggle="modal" data-bs-target="#authModal">Login/ Register</button>
+                  </div>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                </div>
+              </div>
+            </header>
+
+
         `;
         initializeUI();
-
 
     }
 }
