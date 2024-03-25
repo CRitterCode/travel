@@ -1,18 +1,18 @@
 function loadStylesheet(href) {
-    var link = document.createElement("link");
+    let link = document.createElement("link");
     link.rel = "stylesheet";
     link.href = href;
     document.head.appendChild(link);
 }
 
 function loadScript(src) {
-    var script = document.createElement("script");
+    let script = document.createElement("script");
     script.src = src;
     document.head.appendChild(script);
 }
 
 loadStylesheet("../../node_modules/bootstrap/dist/css/bootstrap.min.css");
-
+loadScript("../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js");
 loadStylesheet("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
 
 loadScript("https://www.gstatic.com/firebasejs/10.5.0/firebase-app-compat.js");

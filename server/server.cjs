@@ -1,0 +1,43 @@
+const express = require("express");
+const path = require('path');
+const fs = require('fs');
+const app = express();
+const PORT = 3000;
+const cookieParser = require('cookie-parser');
+const statusMonitor = require('express-status-monitor');
+const firebase = require('firebase-admin');
+const { initializeApp, applicationDefault } = require('firebase-admin/app');
+
+app.use(cookieParser());
+app.use(express.json());
+
+const admin = require("firebase-admin");
+const serviceAccount = require("./firebaseSDK.json");
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://plan2travel4u-default-rtdb.europe-west1.firebasedatabase.app"
+});
+
+app.use('/status', (req, res, next) =>
+{
+    const idToken = req.cookies.idToken;
+    if (!idToken) {
+        return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    firebase.auth().verifyIdToken(idToken)
+        .then(decodedToken => {
+            req.user = decodedToken;
+            next();
+        })
+        .catch(error => {
+            console.error('Error verifying Firebase ID token:', error);
+            return res.status(401).json({ error: 'Unauthorized' });
+        });
+}
+);
+app.use(express.static(path.join(__dirname, '..')));
+app.use(statusMonitor());
+
+app.listen(PORT, () => console.log(`The server is running at ${PORT}`));
