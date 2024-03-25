@@ -28,8 +28,13 @@ app.use('/status', (req, res, next) =>
 
     firebase.auth().verifyIdToken(idToken)
         .then(decodedToken => {
-            req.user = decodedToken;
-            next();
+            //TODO: write Database Firebase admins...
+            if (decodedToken.uid === "GipbEobKxKc5zj7dS3WqlMIW1Cg2"){
+                req.user = decodedToken;
+                next();
+            }else{
+                return res.status(401).json({ error: 'Unauthorized' });
+            }
         })
         .catch(error => {
             console.error('Error verifying Firebase ID token:', error);
