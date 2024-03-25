@@ -42,7 +42,27 @@ app.use('/status', (req, res, next) =>
         });
 }
 );
+
+app.use(statusMonitor({
+    title: 'Healthcheck for Plan2travel4u',
+    healthChecks: [{
+        protocol: 'http',
+        host: 'localhost',
+        path: '/src/html/index.html',
+        port: '3000'
+    }, {
+        protocol: 'http',
+        host: 'localhost',
+        path: '/src/html/destination.html',
+        port: '3000'
+    },
+        {
+            protocol: 'http',
+            host: 'localhost',
+            path: '/src/html/suitecasepacking.html',
+            port: '3000'
+        }]
+}));
 app.use(express.static(path.join(__dirname, '..')));
-app.use(statusMonitor());
 
 app.listen(PORT, () => console.log(`The server is running at ${PORT}`));
