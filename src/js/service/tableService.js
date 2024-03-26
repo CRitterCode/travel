@@ -61,11 +61,11 @@ class BaseTableList {
         const container = document.getElementById(this.container);
         const table = document.createElement('table');
 
-        const thead = this.#setHeader();
         const tbody = this.#setBody();
         const tfoot = document.createElement('tfoot');
+        const thead = this.#setHeader();
 
-        table.classList.add("table", "table-hover", "table-bordered", "table-sm");
+        table.classList.add("table", "table-bordered", "table-sm", "border-dark", 'table-success');
 
         table.appendChild(thead);
         table.appendChild(tbody);
@@ -81,6 +81,7 @@ class BaseTableList {
             const th = document.createElement('th');
             th.textContent = this.columnNames[i];
             th.style.textAlign = "center";
+            th.style.borderBottomWidth = '2px';
             headerRow.appendChild(th);
         }
         return thead;

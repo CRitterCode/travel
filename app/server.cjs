@@ -19,6 +19,18 @@ admin.initializeApp({
     databaseURL: "https://plan2travel4u-default-rtdb.europe-west1.firebasedatabase.app"
 });
 
+app.get("/", (req, res, next) => {
+    res.sendFile('index.html', { root: path.join(__dirname, 'html') });
+})
+
+app.get("/destination", (req, res, next) => {
+    res.sendFile('destination.html', { root: path.join(__dirname, 'html') });
+})
+
+app.get("/suitcase", (req, res, next) => {
+    res.sendFile('suitcase.html', { root: path.join(__dirname, 'html') });
+})
+
 app.use('/status', (req, res, next) =>
 {
     const idToken = req.cookies.idToken;
@@ -63,6 +75,18 @@ app.use(statusMonitor({
             port: '3000'
         }]
 }));
+
+
 app.use(express.static(path.join(__dirname, '..')));
+
+app.use((req, res, next) => {
+    res.status(404).send('404 - Seite nicht gefunden');
+});
+
+app.use((err, req, res, next) => {
+    res.status(err.status || 500);
+    res.send('Fehler: ' + err.message);
+});
+
 
 app.listen(PORT, () => console.log(`The server is running at ${PORT}`));
