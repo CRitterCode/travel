@@ -14,6 +14,7 @@ function loadScript(src) {
 loadStylesheet("../../node_modules/bootstrap/dist/css/bootstrap.min.css");
 loadStylesheet("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
 loadStylesheet("https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth.css");
+loadStylesheet('../../public/css/page.css')
 
 loadScript("../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js");
 loadScript("https://www.gstatic.com/firebasejs/10.5.0/firebase-app-compat.js");

@@ -23,6 +23,7 @@ app.get("/", (req, res, next) => {
     res.sendFile('index.html', { root: path.join(__dirname, 'html') });
 })
 
+
 app.get("/destination", (req, res, next) => {
     res.sendFile('destination.html', { root: path.join(__dirname, 'html') });
 })
@@ -60,33 +61,34 @@ app.use(statusMonitor({
     healthChecks: [{
         protocol: 'http',
         host: 'localhost',
-        path: '/src/html/index.html',
+        path: '/app/html/index.html',
         port: '3000'
     }, {
         protocol: 'http',
         host: 'localhost',
-        path: '/src/html/destination.html',
+        path: '/app/html/destination.html',
         port: '3000'
     },
         {
             protocol: 'http',
             host: 'localhost',
-            path: '/src/html/suitecasepacking.html',
+            path: '/app/html/suitcase.html',
             port: '3000'
         }]
 }));
 
-
 app.use(express.static(path.join(__dirname, '..')));
 
 app.use((req, res, next) => {
-    res.status(404).send('404 - Seite nicht gefunden');
+    res.sendFile('404.html', { root: path.join(__dirname, 'html') });
 });
 
 app.use((err, req, res, next) => {
     res.status(err.status || 500);
-    res.send('Fehler: ' + err.message);
+    res.sendFile('500.html', { root: path.join(__dirname, 'html') });
 });
+
+
 
 
 app.listen(PORT, () => console.log(`The server is running at ${PORT}`));
