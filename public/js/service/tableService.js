@@ -65,7 +65,7 @@ class BaseTableList {
         const tfoot = document.createElement('tfoot');
         const thead = this.#setHeader();
 
-        table.classList.add("table", "table-bordered", "table-sm", "border-dark", 'table-success');
+        table.classList.add("table", "table-bordered", "table-sm", "border-dark");
         table.style.marginBottom = '5rem';
 
         table.appendChild(thead);
