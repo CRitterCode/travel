@@ -1,4 +1,5 @@
 import {initializeFirebase} from "./firebaseConfig.js"
+import {writeUserData} from "./firebaseDB.js";
 import {renderLogoutCard} from "../component/logoutCard.js";
 
 initializeFirebase();
@@ -11,6 +12,9 @@ const uiConfig = {
     callbacks: {
         signInSuccessWithAuthResult: function (authResult, redirectUrl) {
             if (authResult.user) {
+            if (authResult.additionalUserInfo.isNewUser){
+                writeUserData(authResult.user.uid, "credentials", {isAdmin:false})
+            }
             } else {
                 console.log("Error with login")
             }
