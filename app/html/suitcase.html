@@ -116,11 +116,11 @@
 
 
 
-<script type="module" src="../../public/js/headerConfig.js"></script>
-<script type="module" src="../../public/js/header.js"></script>
-<script type="module" src="../../public/js/footer.js">
+<script type="module" async src="../../public/js/headerConfig.js"></script>
+<script type="module" defer src="../../public/js/header.js"></script>
+<script type="module" defer src="../../public/js/footer.js">
 </script>
-<script type="module" defer>
+<script defer type="module">
     import {BaseTableListBuilder} from "../../public/js/service/tableService.js";
     import {
         DeleteTableTagCommand,
@@ -130,6 +130,7 @@
     } from "../../public/js/Pattern/command/tableCommand.js";
     import {SuitcaseWrapper} from "../../public/js/wrapper/tableWrapper.js";
     import {loadTableByName, saveToTableByName} from "../../public/js/service/tableCRUDService.js";
+
 
     const colHeader = ["Name", "Count", "Checked"];
     const tableListBuilder = new BaseTableListBuilder()
@@ -168,7 +169,6 @@
         , position: "bottom", single: true, id: "loadDBTable"});
 
     extendableTableList.addTableButton({bType: "load", command: new CRUDCommand("suitcase",loadTableByName), position: "bottom", single: true, id: "saveDBTable"});
-
 
 
 </script>

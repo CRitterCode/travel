@@ -57,12 +57,10 @@ class Header extends HTMLElement {
                   </button>
                 </div>
               </div>
-            </header>
-
-
+            </header>        
         `;
-        initializeUI();
 
+        initializeUI();
     }
 }
 

@@ -73,18 +73,18 @@ app.use(statusMonitor({
         protocol: 'http',
         host: 'localhost',
         path: '/app/html/index.html',
-        port: '3000'
+        port: '8080'
     }, {
         protocol: 'http',
         host: 'localhost',
         path: '/app/html/destination.html',
-        port: '3000'
+        port: '8080'
     },
         {
             protocol: 'http',
             host: 'localhost',
             path: '/app/html/suitcase.html',
-            port: '3000'
+            port: '8080'
         }]
 }));
 
