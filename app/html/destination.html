@@ -122,7 +122,7 @@
 
 
 <script defer type="module">
-  import {BaseTableListBuilder} from "../../public/js/service/tableService.js";
+  import {TableListBuilder} from "../../public/js/Pattern/builder/tableBuilder.js";
   import {
     DeleteTableTagCommand,
     AddTableRowCommand,
@@ -136,7 +136,7 @@
 
   const colHeader = ["Country","J","F","M","A","M","J","J","A","S","O","N","D"];
   const rows = [["Row 1", "Row 1 Data 2", "Row 1 Data 3"], ["Row 2", "Row 2 Data 2", "Row 2 Data 3"], ["Row 3", "Row 3 Data 3", "Row 3 Data 3"]];
-  const tableListBuilder = new BaseTableListBuilder()
+  const tableListBuilder = new TableListBuilder()
           .setType("extendable")
           .setContainer("list-container")
           .setColumnNames(colHeader)

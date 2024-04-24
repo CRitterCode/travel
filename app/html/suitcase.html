@@ -121,7 +121,7 @@
 <script type="module" defer src="../../public/js/footer.js">
 </script>
 <script defer type="module">
-    import {BaseTableListBuilder} from "../../public/js/service/tableService.js";
+    import {TableListBuilder} from "../../public/js/Pattern/builder/tableBuilder.js";
     import {
         DeleteTableTagCommand,
         AddTableRowCommand,
@@ -133,7 +133,7 @@
 
 
     const colHeader = ["Name", "Count", "Checked"];
-    const tableListBuilder = new BaseTableListBuilder()
+    const tableListBuilder = new TableListBuilder()
         .setType("extendable")
         .setContainer("list-container")
         .setColumnNames(colHeader)

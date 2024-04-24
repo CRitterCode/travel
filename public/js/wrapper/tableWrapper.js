@@ -1,14 +1,15 @@
 import {HolidayDecoratorCommand, createTdInputEleCommand} from "../Pattern/command/wrapperCommand.js";
-import {CommandBase} from "../Pattern/command/tableCommand.js";
 
-class BasicTableDecorator {
+class BasicTableWrapper {
     constructor(tableContainer) {
         this.tableContainer = tableContainer;
         this.wrapperName = "";
     }
+
+    render() {}
 }
 
-class HolidayTimesWrapper extends BasicTableDecorator {
+class HolidayTimesWrapper extends BasicTableWrapper {
     constructor(table) {
         super(table);
         this.wrapperName = "holidaytimes"
@@ -23,7 +24,7 @@ class HolidayTimesWrapper extends BasicTableDecorator {
 
 }
 
-class SuitcaseWrapper extends BasicTableDecorator {
+class SuitcaseWrapper extends BasicTableWrapper {
 
     constructor(table) {
         super(table);

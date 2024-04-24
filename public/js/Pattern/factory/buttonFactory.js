@@ -14,12 +14,18 @@ class ButtonBase {
         this.ele.style.alignItems = "center";
     }
 
+    addIcon(btn, classList){
+        const icon = document.createElement("i");
+        icon.className = classList;
+        btn.appendChild(icon);
+    }
+
 }
 
 class DeleteButton extends ButtonBase {
     constructor(type) {
         super(type);
-        addIcon(this.ele, "fa-regular fa-trash-can");
+        this.addIcon(this.ele, "fa-regular fa-trash-can");
 
     }
 }
@@ -27,21 +33,21 @@ class DeleteButton extends ButtonBase {
 class AddButton extends ButtonBase {
     constructor(type) {
         super(type);
-        addIcon(this.ele,"fa-solid fa-plus")
+        this.addIcon(this.ele,"fa-solid fa-plus")
     }
 }
 
 class SaveButton extends ButtonBase {
     constructor(type) {
         super(type);
-        addIcon(this.ele, "fas fa-save")
+        this.addIcon(this.ele, "fas fa-save")
     }
 }
 
 class LoadButton extends ButtonBase {
     constructor(type) {
         super(type);
-        addIcon(this.ele, "fa-solid fa-folder-plus")
+        this.addIcon(this.ele, "fa-solid fa-folder-plus")
     }
 }
 
@@ -55,7 +61,7 @@ class InfoButton extends ButtonBase {
         this.ele.setAttribute("data-bs-placement", "bottom");
         this.ele.setAttribute("data-bs-content", " ");
 
-        addIcon(this.ele, "fa-solid fa-circle-info")
+        this.addIcon(this.ele, "fa-solid fa-circle-info")
     }
 }
 
@@ -79,10 +85,6 @@ class CreateButtonFactory {
 
 }
 
-function addIcon(btn, classList){
-    const icon = document.createElement("i");
-    icon.className = classList;
-    btn.appendChild(icon);
-}
+
 
 

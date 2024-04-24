@@ -1,59 +1,15 @@
-import { CreateButtonFactory } from "../Pattern/factory/button.js";
-import {DeleteTableTagCommand, EnableDragAndDrop} from "../Pattern/command/tableCommand.js";
-export { BaseTableListBuilder }
+import {CreateButtonFactory} from "../Pattern/factory/buttonFactory.js";
+import {EnableDragAndDrop} from "../Pattern/command/tableCommand.js";
 
-class BaseTableListBuilder {
-    constructor() {
-        this.type = "";
-        this.container = "";
-        this.columnNames = [""];
-        this.rows = [[]];
-    }
-
-    setType(type) {
-        this.type = type;
-        return this;
-    }
-
-    setContainer(container = "") {
-        this.container = container;
-        return this;
-    }
-
-    setColumnNames(columnNames = [""]) {
-        this.columnNames = columnNames;
-        return this;
-    }
-
-    setRows(rows = [[]]) {
-        this.rows = rows;
-        return this;
-    }
-
-    build() {
-        if (this.type === "sealed") {
-            return new SealedTableList(this, false);
-        } else if (this.type === "extendable") {
-            return new ExtendableTableList(this, true);
-        } else if (this.type === "draggable") {
-            return new DraggableTableList(this,false);
-        } else {
-            throw new Error("Ungültiger Listentyp angegeben: " + this.type);
-        }
-    }
-}
-
-class BaseTableList {
-    constructor(builder, isEdit) {
+export class BaseTableList {
+    constructor(builder) {
         this.type = builder.type;
         this.container = builder.container;
         this.columnNames = builder.columnNames;
         this.rows = builder.rows;
         this.buttonFactory = new CreateButtonFactory();
-        this.cTableRows = this.rows.length;
-        this.cTableColumns = this.columnNames.length;
-        this.hasHeader = this.columnNames.length > 0;
-        this.isEdit = isEdit;
+        this.cTableRows = this.rows?.length;
+        this.cTableColumns = this.columnNames?.length;
         this.renderTableList();
     }
 
@@ -74,7 +30,7 @@ class BaseTableList {
         container.appendChild(table);
     }
 
-    #setHeader(){
+    #setHeader() {
         const thead = document.createElement('thead');
         const headerRow = thead.insertRow();
 
@@ -88,13 +44,13 @@ class BaseTableList {
         return thead;
     }
 
-    #setBody(){
+    #setBody() {
         const tbody = document.createElement('tbody');
         for (let trIndex = 0; trIndex < this.cTableRows; trIndex++) {
             let row = tbody.insertRow();
             for (let colIndex = 0; colIndex < this.cTableColumns; colIndex++) {
                 const cell = row.insertCell();
-                cell.setAttribute("contenteditable","");
+                cell.setAttribute("contenteditable", "");
                 cell.textContent = this.rows[trIndex][colIndex];
 
                 //TODO: check if button object, then render accordingly with factory
@@ -110,21 +66,21 @@ class BaseTableList {
     //TODO: aufteilen der Funktion: addRow, generate Header usw.
 }
 
-class SealedTableList extends BaseTableList {
+export class SealedTableList extends BaseTableList {
     constructor(builder) {
         super(builder, false);
     }
 }
 
 //TODO: command hinzufügen
-class DraggableTableList extends BaseTableList {
+export class DraggableTableList extends BaseTableList {
     constructor(builder) {
         super(builder, true);
         new EnableDragAndDrop().execute(this);
     }
 }
 
-class ExtendableTableList extends DraggableTableList {
+export class ExtendableTableList extends DraggableTableList {
     constructor(builder) {
         super(builder, true);
     }
@@ -167,15 +123,3 @@ class ExtendableTableList extends DraggableTableList {
 
     }
 }
-
-
-
-
-
-
-// // function typeGuardList(table)
-
-
-
-
-

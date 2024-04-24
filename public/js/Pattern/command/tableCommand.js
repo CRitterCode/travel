@@ -1,11 +1,11 @@
-import {CreateButtonFactory} from "../factory/button.js";
+import {CreateButtonFactory} from "../factory/buttonFactory.js";
 
 
 class CommandBase {
     constructor(eventTarget) {
         this.eventTarget = eventTarget;
     }
-    execute() {
+    execute(tableContainer,btn) {
     }
 
 }
