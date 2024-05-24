@@ -47,10 +47,16 @@ body {
 
 .carousel-caption p,
 .carousel-caption h1 {
-    color: white;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+    color: black;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+
 }
 
+.carousel-caption p > a {
+    -webkit-text-stroke-width: 0;
+}
 
 /* MARKETING CONTENT
 -------------------------------------------------- */

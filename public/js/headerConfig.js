@@ -5,9 +5,13 @@ function loadStylesheet(href) {
     document.head.appendChild(link);
 }
 
-function loadScript(src) {
+function loadScript(src, isModule) {
     let script = document.createElement("script");
     script.src = src;
+    if (isModule){
+        script.type = "module";
+        script.defer = true;
+    }
     document.head.appendChild(script);
 }
 
@@ -23,6 +27,12 @@ loadScript("https://www.gstatic.com/firebasejs/10.5.0/firebase-database-compat.j
 loadScript("https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth__en.js");
 loadScript("https://www.gstatic.com/firebasejs/10.5.0/firebase-storage-compat.js");
 loadScript("https://www.gstatic.com/firebasejs/10.5.0/firebase-storage-compat.js");
+
+
+loadScript("../../public/js/footer.js", true);
+loadScript("../../public/js/header.js", true);
+
+
 
 
 
