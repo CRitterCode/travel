@@ -13,81 +13,82 @@ Die Website bietet vordefinierte Tools, die Benutzern bei der Vorbereitung und O
 
 ## Konzept der Funktionsseiten
 
-Die Funktionen der Website werden in kurzen Bildern (Slidern oder Karussellen) und begleitenden Beschreibungen erläutert - je nach Bedarf.<br>
-Je nach Funktion werden Dropdowns und andere Elemente verwendet. Die Gestaltung und der Aufbau jeder Unterseite sind abhängig von der jeweiligen Funktion. Nicht jede Unterseite benötigt beispielsweise eine Tabelle.<br>
-Stattdessen werden Module verwendet, die je nach Bedarf verschoben werden können.
+Die Funktionen der Website werden in kurzen Bildern (Slidern oder Karussellen) und begleitenden Beschreibungen erläutert.\
+Je nach Funktion werden Dropdowns und andere Elemente verwendet. Die Gestaltung und der Aufbau jeder Unterseite sind abhängig von der jeweiligen Funktion.\
+Module (Custom HTML-Element und Builder) werden für den generellen Aufbau der Seite verwendet.
+
+## Verwendung der Tables
+
+Zur Generierung der Tables im Frontend wird auf einen Workflow mit Patterns zurückgegriffen.
+Der generelle Workflow sieht wie folgt aus:
+```mermaid
+graph LR
+    Y[DIV Element mit ID erstellt] --> 
+A[TableListBuilder erstellt] --> S{Seitenfunktion benötigt?}
+S -->|yes|W[Render Wrapper]
+W --> SD{Sealed oder Draggable?}
+SD -->|yes|X
+SD -->|no|E[Button hinzufügen] --> X[Ende]
+
+S -->|no|T[Build Table] --> SD
+
+```
+
+Das Klassendiagramm ([tableBuilderCD.puml](tableBuilderCD.puml)) zeigt den detailierten Zusammenhang zwischen den einzelnen Komponenten um einen Table zu generieren.\
+Die Grundfunktionen lassen sich unter public/js
+- service (Bietet die CRUD-Funktionen für die Tables)
+- table (Konkrete Implementierung der Tables)
+- wrapper (Die Wrapper um die Tables mit spezifischen Funktionen zu erweitern)
+- pattern (Buttonfactory, Tablebuilder, commands (table und wrapper))
+- firebase (Authentifizierung und Datenbankzugriff)
+
+finden.
+
 
 ## Technologiestack
 
-HTML/CSS für die Gestaltung der Benutzeroberfläche.
-JavaScript für die clientseitige Verarbeitung und Interaktivität.
-
-## Design
-
-Die Gestaltung der Landingpage obligt der Funktionsseiten. Die Modulwebseiten bieten unterschiedliche Designs, abhängig von der jeweiligen Funktion. Die Entscheidung,<br>
-welches Design am besten geeignet ist, wird auf der Grundlage der Funktion getroffen.
-
-![Design Example](img/design_examples.png?raw=true)
-
-Wireframe-Prototyp einer Beispielfunktion als Tabelle
-
-![Wireframe-Prototyp](img/wireframe_prototype.jpg?raw=true)
+HTML/CSS für die Gestaltung der Benutzeroberfläche.\
+JavaScript für die clientseitige Verarbeitung und Interaktivität.\
+Node.js mit express und Firebaseauthentifizierung.\
 
 ## Installation
 
-Bootstrap:
-Die verwendete Version im Projekt ist 5.0.2 und kann via folgenden Kommando installiert werden
-npm install bootstrap@5.0.2
+Firebase\
+Im Frontend wird eine CDN verwendet, dadurch muss hier nur im Backend die Dependencies geladen werden.\
 
-Firebase:
-Für den Dienst muss nichts installiert werden, da alles über den CDN abgewickelt wird.
-
-Fontawesome (Icons):
+Fontawesome (Icons)\
 Im Projekt wird die Version 6.4.2 verwendet, welche über CDN im Header initialisiert wird.
 
-Node Version:
+Node Version\
 Die verwendete Version im Projekt ist 5.0.2 und kann via folgenden Kommando installiert werden
-npm install node@20.10.0
+>npm install node@20.10.0
+
+
+### dependencies
+
+    "dependencies": {
+        "bootstrap": "^5.3.3",
+        "cookie-parser": "^1.4.6",
+        "cors": "^2.8.5",
+        "express": "^4.19.1",
+        "express-status-monitor": "^1.3.4",
+        "firebase": "^10.5.2",
+        "firebase-admin": "^12.0.0"
+    }
+
+express-status-monitor\
+Live monitoring der Endpunkte und Ressourcen
+
+firebase\
+Für die Authentifizierung auf der Serverseite, um auf den geschützten Statusmonitor zuzugreifen.
 
 ## Endpunkte
 
-src/html/
-- /index.html
-- /suitecasepacking.html
-- /budget.html
+https://plan2travel4u.azurewebsites.net/
+- / <=> /index (Landingpage)
+- /suitcase (Funktionsseite zum packen eines Koffers)
+- /destination (Planer für die beste Reisezeit)
+- /status (Statusmonitoring)
 
-## Must-haves
 
-- Responsives Design
-- Verlinkte Seiten mit den spezifischen Funktionen, wie:
-> - [x] Beste Urlaubszeit
-> - [x] Ich packe meinen Koffer
-- [x] Landing Page
 
-## Nice-to-haves
-
-- [x] Login, Sign Up 
-- [x] Datenbank
-
-## Todo Liste
-
-- [x] Corporate Identity: Überlegung des Farbschemas, Erstellung eines Logos und Auswahl eines Namens für die Website.
-
-- [x] Repository und Clouddokumentenablage: Erstellung eines Repositorys für die Website und Speicherung von Dokumenten in der Cloud zur Zusammenarbeit im Team.
-
-- [x] Funktionsüberlegung: Festlegung, welche Funktionen die Unterseiten der Website bieten sollen.
-
-- [x] Struktur der Landingpage: Überlegung zur Gestaltung der Landingpage und deren Aufbau, einschließlich der Verwendung von Modulen.
-
-- [x] Header und Footer: Definition von Header- und Footer-Elementen.
-
-- [x] Prototyp für die Landingpage: Erstellung eines Dummy-Prototyps für die Landingpage, um das Design zu visualisieren.
-
-- [x] Struktur der Funktionsseiten: Planung der generellen Struktur der Funktionsseiten, einschließlich der Einleitung.
-
-- [x] Überlegung der einzelnen Unterseiten: Festlegung der Funktionen und Gestaltungselemente für jede Unterseite.
-
-## Contributors
-
-Javascript - Christian Ritter <br>
-Frontend - Parisa Fayaz Gharehbolagh, Nazanin Shahrokhi 
