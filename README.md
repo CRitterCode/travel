@@ -47,9 +47,14 @@ finden.
 
 ## Technologiestack
 
-HTML/CSS für die Gestaltung der Benutzeroberfläche.\
-JavaScript für die clientseitige Verarbeitung und Interaktivität.\
-Node.js mit express und Firebaseauthentifizierung.\
+### Backend
+Node.js mit express.js\
+Firebase zur Authentifizierung als Admin
+
+### Frontend
+HTML und CSS (Bootstrap)\
+Javascript mit CDN (Firebase, Fontawesome)
+
 
 ## Installation
 
