@@ -95,5 +95,50 @@ https://plan2travel4u.azurewebsites.net/
 - /destination (Planer für die beste Reisezeit)
 - /status (Statusmonitoring)
 
+# Allgemein
+
+Hinzufügen aller Abhängigkeiten
+> npm install
+
+start den Applikation
+> npm start
+
+Serverkonfiguration
+>PORT:8080\
+>IP: 0.0.0.0
+
+Applikationsdatei
+>/app/server.cjs
+
+Es wird eine Node.js-Umgebung benötigt.
+
+## Dev
+
+Endpunkte
+>/status\
+>Kann lokal ohne Anmeldung aufgerufen werden.
+
+## Deployment
+
+Endpunkte
+>/status\
+>Benötigt einen User in Firebase der das Flag isAdmin auf true gesetzt hat. 
+
+## Services
+
+### Firebase-admin
+
+Damit die serverseitige Authentifizierung durchgeführt werden kann, muss ein private Key generiert werden.\
+Siehe: https://firebase.google.com/docs/admin/setup
+
+To generate a private key file for your service account:
+>In the Firebase console, open Settings > Service Accounts.\
+>Click Generate New Private Key, then confirm by clicking Generate Key.\
+>Securely store the JSON file containing the key.
+
+Diese muss unter folgendem Pfad, mit folgendem Namen, hinzugefügt werden
+>/app/firebaseSDK.json
+
+
 
 
