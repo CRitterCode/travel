@@ -1,5 +1,5 @@
 import {CreateButtonFactory} from "../factory/buttonFactory.js";
-import {isVariableInit} from "../../utils/objectUtil.js";
+import {isGlobalVariableInit} from "../../utils/objectUtil.js";
 
 
 class CommandBase {
@@ -233,7 +233,7 @@ function enableDragAndDrop(rows, tbody) {
 
 
 function addPopoverTriggerEl(popoverTriggerEl) {
-    isVariableInit(window.bootstrap).then(_ => {
+    isGlobalVariableInit(window.bootstrap).then(_ => {
         var popoverInstance = new bootstrap.Popover(popoverTriggerEl);
 
         popoverTriggerEl.addEventListener("click", function test(event) {

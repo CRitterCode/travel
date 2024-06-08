@@ -1,9 +1,9 @@
-import {isVariableInit} from "../utils/objectUtil.js";
+import {isGlobalVariableInit} from "../utils/objectUtil.js";
 
 
 function initializeFirebase() {
 
-    return isVariableInit(window.firebase).then(_ => {
+    return isGlobalVariableInit(window.firebase).then(_ => {
         const firebaseConfig = {
             apiKey: "AIzaSyBDk7T8_R03S83lZeJiRkjtgYxdfmldeZw",
             authDomain: "plan2travel4u.firebaseapp.com",

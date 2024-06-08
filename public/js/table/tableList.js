@@ -39,6 +39,7 @@ export class BaseTableList {
             th.textContent = this.columnNames[i];
             th.style.textAlign = "center";
             th.style.borderBottomWidth = '2px';
+            th.style.padding = "4px";
             headerRow.appendChild(th);
         }
         return thead;
