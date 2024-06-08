@@ -1,6 +1,7 @@
 import {initializeFirebase} from "./firebaseConfig.js"
 import {writeUserData} from "./firebaseDB.js";
 import {renderLogoutCard} from "../component/logoutCard.js";
+import {isVariableInit} from "../utils/objectUtil.js";
 
 
 async function initializeUI(container) {
@@ -56,6 +57,8 @@ async function initializeUI(container) {
 
                 document.cookie = 'idToken' + "=" + '' + ";path=/";
             } else {
+                isVariableInit(window.bootstrap).then(_ => {
+
                 const authModal = document.getElementById('authModal');
                 const modal = bootstrap.Modal.getInstance(authModal);
                 modal?.hide();
@@ -85,6 +88,7 @@ async function initializeUI(container) {
                         console.error('Error getting ID token:', error);
                     });
 
+                });
             }
         });
     });

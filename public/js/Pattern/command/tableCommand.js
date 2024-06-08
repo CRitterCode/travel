@@ -233,7 +233,7 @@ function enableDragAndDrop(rows, tbody) {
 
 
 function addPopoverTriggerEl(popoverTriggerEl) {
-    isVariableInit(bootstrap).then(_ => {
+    isVariableInit(window.bootstrap).then(_ => {
         var popoverInstance = new bootstrap.Popover(popoverTriggerEl);
 
         popoverTriggerEl.addEventListener("click", function test(event) {

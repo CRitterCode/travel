@@ -51,6 +51,8 @@ export class BaseTableList {
             for (let colIndex = 0; colIndex < this.cTableColumns; colIndex++) {
                 const cell = row.insertCell();
                 cell.setAttribute("contenteditable", "");
+                cell.style.wordBreak = "break-word";
+
                 cell.textContent = this.rows[trIndex][colIndex];
 
                 //TODO: check if button object, then render accordingly with factory
