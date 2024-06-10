@@ -124,7 +124,6 @@ Endpunkte
 >/status\
 >Benötigt einen User in Firebase der das Flag isAdmin auf true gesetzt hat. 
 
-## Services
 
 ### Firebase-admin
 
@@ -138,6 +137,60 @@ To generate a private key file for your service account:
 
 Diese muss unter folgendem Pfad, mit folgendem Namen, hinzugefügt werden
 >/app/firebaseSDK.json
+
+
+### Firebase
+
+Es wird ein Google-Acount für die Speicherung der Daten in der Cloud benötigt.\
+Es reicht die gratis Version (stand 06/2024) von Firebase um die Applikation zu betreiben.
+
+In der Firebaseconsole müssen folgende Services aktiviert werden:
+- Authentication
+- Realtime Database
+
+Unterstützte Anmeldemethoden (Diese müssen unter Authentication aktiviert werden):
+-  E-Mail-Adresse/Passwort
+
+In der Realtime Database (unter Regeln) müssen folgende Regeln gesetzt werden, damit die User nur auf deren Daten zugreifen können.
+
+    {
+    "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null",
+    "users": {
+    "$userId": {
+    ".read": "auth.uid == $userId",
+    ".write": "auth.uid == $userId"
+                }
+            }
+        }
+    }
+### Firebaseconfig
+
+Nach einrichten des Account muss in der Firebaseconsole unter:
+>Projektübersicht/Projekteinstellungen/Allgemein
+
+im unteren Feld "SDK-Einrichtung und -Konfiguration" unter CDN die
+
+>  const firebaseConfig = {\
+apiKey: "",\
+authDomain: "",\
+databaseURL: "",\
+projectId: "",\
+storageBucket: "",\
+messagingSenderId: "",\
+appId: "",\
+measurementId: ""\
+};
+
+kopieren und hier im Projekt unter
+
+>public\js\firebase\firebaseConfig.js
+ 
+eingefügt werden, damit Firebase konfiguriert ist.
+
+
+
 
 
 
