@@ -1,4 +1,4 @@
-function isGlobalVariableInit(variable, timeout = 10000) {
+function isGlobalVariableInit(variable, timeout = 5000) {
     return new Promise((resolve, reject) => {
 
         function checkVariable() {
